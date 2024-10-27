@@ -1,0 +1,14 @@
+{% extends "eventapp/form_layout.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block forms %}
+    <h1>Register your Account</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{forms.as_p}}
+        <button type="submit">SignUp</button>
+    </form>
+{% endblock %}

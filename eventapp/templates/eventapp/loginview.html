@@ -1,0 +1,15 @@
+{% extends "eventapp/form_layout.html" %}
+
+{% block forms %}
+    <form method="post">
+        <h1>Login </h1>
+        {% csrf_token %}
+        {{forms.as_p}}
+        <button type="submit">Login</button>
+        <!-- <a href="{%url 'all_events'%}"><button type="button">Cancle</button></a> -->
+    </form>
+{% endblock %}
+
+{%block title%}
+Add Events
+{% endblock %}

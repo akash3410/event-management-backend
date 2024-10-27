@@ -1,0 +1,7 @@
+{% include "eventapp/layout.html" %}
+
+{% block content %}
+    {%include "eventapp/partials/nav.html"%}
+    <h1> This is home page </h1>
+    <h4>you are {{request.user}}</h4>
+{% endblock %}

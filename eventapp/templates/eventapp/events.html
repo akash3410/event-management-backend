@@ -1,0 +1,23 @@
+{% extends "eventapp/layout.html" %}
+
+{% block title %}
+Events
+{% endblock %}
+
+{% block content %}
+    {%include "eventapp/partials/nav.html"%}
+    <h1> All Events </h1>
+    <div class="row">
+        {% for event in events %}
+            <div class="card col-md-4 m-1" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{event.title}}</h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>for categories -->
+                    <p class="card-text">{{event.description}}</p>
+                    <!-- <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a> -->
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
