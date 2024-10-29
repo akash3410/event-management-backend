@@ -43,3 +43,9 @@ class SerachForm(forms.Form):
             'class': "form-control rounded-2 col-8"
         })
     )
+    
+class UpdateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+        

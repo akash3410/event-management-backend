@@ -1,0 +1,34 @@
+{% extends "eventapp/layout.html" %}
+
+{% block title %}
+Booking
+{% endblock %}
+
+{% block content %}
+  {%include "eventapp/partials/nav.html"%}
+  <div class="container">
+      <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{event.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{event.venue}}</h6>
+            <p class="card-text">{{event.description}}</p>
+            <p class="card-text">Book Before: {{event.bookng_last_date}}</p>
+            <p class="card-text">Startting: {{event.arrival_date}}</p>
+            <p class="card-text">End: {{event.end_date}}</p>
+            <p class="card-text">Remainning seats: {{event.available_seat}}</p>
+
+            {% if event.id in booked_events %}
+              <h4 class="text-primary">Already Booked</h4>
+              {% elif event.available_seat <= 0 %}
+              <h4 class="text-primary">Sit isn't available</h4>
+              {% else %}
+              <form action="" method="post">
+                {%csrf_token%}
+                <button class="btn btn-outline-primary" type="submit">Confirm Booking</button>
+              </form>
+            {% endif %}
+            
+          </div>
+      </div>
+  </div>
+{% endblock %}

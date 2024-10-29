@@ -11,6 +11,7 @@ class Event(models.Model):
     arrival_date = models.DateTimeField()
     end_date = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "events")
+    available_seat = models.PositiveIntegerField(default=5)
     
     def __str__(self):
         return self.title
@@ -23,3 +24,11 @@ class Profile(models.Model):
     
     def __str__(self):
         return f"{self.user.username}'s prfile"
+
+class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    booked_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return  f"{self.user.username} | {self.event.title}"

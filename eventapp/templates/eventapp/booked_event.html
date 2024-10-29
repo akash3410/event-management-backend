@@ -1,0 +1,36 @@
+{% extends "eventapp/layout.html" %}
+
+{% block title %}
+Booked Event
+{% endblock %}
+
+{% block content %}
+    {%include "eventapp/partials/nav.html"%}
+    <div class="row">
+        <div class="col-8 mt-2">
+            <h1> Booked Events </h1>
+        </div>
+        <div class="col-4 mt-3">
+            <form method="post">
+                {%csrf_token%}
+                {{forms.as_p}}
+                <button type="submit" class="btn btn-outline-primary">Search</button>
+            </form>
+        </div>
+    </div>
+    
+    <hr>
+    <div class="row">
+        {% for booked in bookeds %}
+            <div class="card col-md-4 m-1" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="" class="text-decoration-none">{{booked.event.title}}</a></h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{booked.event.venue}}</h6>
+                    <p class="card-text"><span class="fs-5">Start: </span> {{booked.event.arrival_date}}</p>
+                    <p class="card-text"><span class="fs-5">End: </span>  {{booked.event.end_date}}</p>
+                    <a href="{%url 'cancel_booking' booked.event.id%}" class="btn btn-danger">Cancel Booking</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

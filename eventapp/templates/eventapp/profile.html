@@ -23,7 +23,7 @@ Profile
                     <li class="list-group-item">Email: {{user.email }}</li>
                 </ul>
             </div>
-            <a href="" class="btn btn-outline-primary my-2">Update Profile</a>
+            <a href="{%url 'user_update'%}" class="btn btn-outline-primary my-2">Update Profile</a>
         </div>
 
         <!-- My Events -->
@@ -38,8 +38,10 @@ Profile
                             <h5 class="card-title">{{event.title}}</h5>
                             <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>for categories -->
                             <p class="card-text">{{event.description}}</p>
-                            <a href="{%url 'update_event' event.pk%}" class="text-decoration-none me-5">Update</a>
-                            <a href="{%url 'delete_event' event.pk%}" class="text-decoration-none">Delete</a>
+                            <a href="{%url 'update_event' event.pk%}" class="text-decoration-none me-5 text-warning bold fs-5">Update</a>
+                            <a href="{%url 'delete_event' event.pk%}" class="text-decoration-none text-danger bold fs-5">Delete</a>
+                            <br>
+                            <a href="{%url 'book_event' event.pk%}" class="btn btn-secondary mt-3">Book Event</a>
                         </div>
                     </div>
                 {% endfor %}

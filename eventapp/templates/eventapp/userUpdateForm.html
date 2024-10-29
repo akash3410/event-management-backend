@@ -1,0 +1,14 @@
+{% extends "eventapp/form_layout.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block forms %}
+    <h1>Update {{Request.user}}'s Profile</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}
