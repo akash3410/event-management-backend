@@ -1,0 +1,51 @@
+{% extends "eventapp/layout.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+{%include "eventapp/partials/nav.html"%}
+<div class="container align-items-center">
+    
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="card mt-2" style="width: 18rem;">
+                <div class="card-header">
+                    {{user.username | upper}} Profile
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">First name: {{user.first_name}}</li>
+                    <li class="list-group-item">Last name: {{user.last_name}}</li>
+                    <li class="list-group-item">Email: {{user.email }}</li>
+                </ul>
+            </div>
+            <a href="" class="btn btn-outline-primary my-2">Update Profile</a>
+        </div>
+
+        <!-- My Events -->
+        <div class="col-8">
+            <h1>My Events</h1>
+            <hr>
+            <a class="btn btn-outline-primary my-2" aria-current="page" href="{%url 'add_events'%}"">Add a event</a>
+            <div class="row">
+                {% for event in events %}
+                    <div class="card col-md-4 m-1" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{event.title}}</h5>
+                            <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>for categories -->
+                            <p class="card-text">{{event.description}}</p>
+                            <a href="{%url 'update_event' event.pk%}" class="text-decoration-none me-5">Update</a>
+                            <a href="{%url 'delete_event' event.pk%}" class="text-decoration-none">Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

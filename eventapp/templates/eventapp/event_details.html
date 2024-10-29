@@ -1,0 +1,26 @@
+{% extends "eventapp/layout.html" %}
+
+{% block title %}
+Event Details
+{% endblock %}
+
+{% block content %}
+    {%include "eventapp/partials/nav.html"%}
+    <h1> Event Details </h1>
+    <hr>
+    <div class="row">
+        <div class="card col-md-4 m-1" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{event.title}}</h5>
+                <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>for categories -->
+                <p class="card-text">{{event.description}}</p>
+                <p class="card-text">Venue: {{event.venue}}</p>
+                <p class="card-text">Published: {{event.created_at}}</p>
+                <p class="card-text">Booking before: {{event.bookng_last_date}}</p>
+                <p class="card-text">Start at: {{event.created_at}}</p>
+                <p class="card-text">End at: {{event.end_date}}</p>
+                <a href="#" class="btn btn-outline-primary text-decoration-none">Book Event</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

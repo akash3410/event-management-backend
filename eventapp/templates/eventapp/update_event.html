@@ -1,0 +1,14 @@
+{% extends "eventapp/form_layout.html" %}
+
+{% block title %}
+Update Event
+{% endblock %}
+
+{% block forms %}
+<h1 style="margin-top: 20px;">Update your Event:</h1>
+<form method="post">
+    {% csrf_token %}
+    {{forms.as_p}}
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

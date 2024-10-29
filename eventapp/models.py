@@ -14,3 +14,12 @@ class Event(models.Model):
     
     def __str__(self):
         return self.title
+    
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True, max_length=150)
+    location = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=14)
+    
+    def __str__(self):
+        return f"{self.user.username}'s prfile"
