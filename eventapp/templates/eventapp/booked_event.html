@@ -25,7 +25,12 @@ Booked Event
             <div class="card col-md-4 m-1" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title"><a href="" class="text-decoration-none">{{booked.event.title}}</a></h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">{{booked.event.venue}}</h6>
+                    <p class="card-text">
+                        {% for categorie in booked.event.categories.all %}
+                             <span>{{categorie.name}} | </span>
+                        {% endfor %}
+                    </p>
+                    <h6 class="card-subtitle mb-2 text-body-secondary"><span class="fs-5">Venue: </span>{{booked.event.venue}}</h6>
                     <p class="card-text"><span class="fs-5">Start: </span> {{booked.event.arrival_date}}</p>
                     <p class="card-text"><span class="fs-5">End: </span>  {{booked.event.end_date}}</p>
                     <a href="{%url 'cancel_booking' booked.event.id%}" class="btn btn-danger">Cancel Booking</a>

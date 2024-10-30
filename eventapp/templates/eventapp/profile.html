@@ -36,7 +36,11 @@ Profile
                     <div class="card col-md-4 m-1" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{event.title}}</h5>
-                            <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>for categories -->
+                            <h6 class="card-subtitle mb-2 text-body-secondary">
+                                {% for categorie in event.categories.all %}
+                                    <span>{{categorie.name}} | </span>
+                                {% endfor %}
+                            </h6>
                             <p class="card-text">{{event.description}}</p>
                             <a href="{%url 'update_event' event.pk%}" class="text-decoration-none me-5 text-warning bold fs-5">Update</a>
                             <a href="{%url 'delete_event' event.pk%}" class="text-decoration-none text-danger bold fs-5">Delete</a>

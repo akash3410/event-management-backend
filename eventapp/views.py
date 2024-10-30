@@ -7,6 +7,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+def is_superuser(user):
+    return user.is_superuser
+
 def home(request):
     booked_events = list()
     events = Event.objects.all()
@@ -16,10 +19,13 @@ def home(request):
     if request.method == "POST":
         forms = SerachForm(request.POST)
         if forms.is_valid():
+            categories = forms.cleaned_data.get('categories')
             query = forms.cleaned_data.get('query')
             
             if query:
-                events = Event.objects.filter(title__icontains=query)
+                events = events.filter(title__icontains=query)
+            if categories:
+                events = events.filter(categories=categories)
                 
     return render(request, 'eventapp/events.html', {'events': events, 'forms': forms, 'booked_events': booked_events})
 
@@ -31,6 +37,7 @@ def add_events(request):
             event = forms.save(commit=False)
             event.user = request.user
             event.save()
+            forms.save_m2m()
             return redirect('home_page')
     forms = AddEventForm()
     return render(request, "eventapp/add_events.html", {'forms': forms})
@@ -67,7 +74,10 @@ def logout_view(request):
 @login_required
 def profile_view(request):
     user = request.user
-    events = Event.objects.filter(user=user)
+    if user.is_superuser:
+        events = Event.objects.all()
+    else:
+        events = Event.objects.filter(user=user)
     return render(request, "eventapp/profile.html", {'user': user, 'events': events})
 
 @login_required

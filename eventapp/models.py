@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from categories.models import Categorie
 
 # Create your models here.
 class Event(models.Model):
@@ -12,6 +13,7 @@ class Event(models.Model):
     end_date = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "events")
     available_seat = models.PositiveIntegerField(default=5)
+    categories = models.ManyToManyField(Categorie, default='concert')
     
     def __str__(self):
         return self.title

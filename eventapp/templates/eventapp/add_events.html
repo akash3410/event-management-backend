@@ -6,7 +6,7 @@
         {% csrf_token %}
         {{forms.as_p}}
         <button type="submit">Add Event</button>
-        <a href="{%url 'all_events'%}"><button type="button">Cancle</button></a>
+        <a href="{%url 'home_page'%}"><button type="button">Cancle</button></a>
     </form>
 {% endblock %}
 
